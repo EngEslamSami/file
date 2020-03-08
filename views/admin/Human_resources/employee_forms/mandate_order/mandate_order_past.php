@@ -1,0 +1,1097 @@
+
+
+
+
+<style type="text/css">
+    .print_forma{
+        /*border:1px solid #73b300;*/
+        padding: 15px;
+    }
+    .piece-box {
+        margin-bottom: 12px;
+        border: 1px solid #73b300;
+        display: inline-block;
+        width: 100%;
+    }
+    .piece-heading {
+        background-color: #9bbb59;
+        display: inline-block;
+        float: right;
+        width: 100%;
+    }
+    .piece-body {
+
+        width: 100%;
+        float: right;
+    }
+    .bordered-bottom{
+        border-bottom: 4px solid #9bbb59;
+    }
+    .piece-footer{
+        display: inline-block;
+        float: right;
+        width: 100%;
+        border-top: 1px solid #73b300;
+    }
+    .piece-heading h5 {
+        margin: 4px 0;
+    }
+    .piece-box table{
+        margin-bottom: 0
+    }
+    .piece-box table th,
+    .piece-box table td
+    {
+        padding: 2px 8px !important;
+    }
+
+    h6 {
+        font-size: 16px;
+        margin-bottom: 3px;
+        margin-top: 3px;
+    }
+    .print_forma table th{
+        text-align: right;
+    }
+    .print_forma table tr th{
+        vertical-align: middle;
+    }
+    .no-padding{
+        padding: 0;
+    }
+    .header p{
+        margin: 0;
+    }
+    .header img{
+        height: 120px;
+        width: 100%
+    }
+    .main-title {
+        display: table;
+        text-align: center;
+        position: relative;
+        height: 120px;
+        width: 100%;
+    }
+    .main-title h4 {
+        display: table-cell;
+        vertical-align: bottom;
+        text-align: center;
+        width: 100%;
+    }
+
+    .print_forma hr{
+        border-top: 1px solid #73b300;
+        margin-top: 7px;
+        margin-bottom: 7px;
+    }
+
+    .no-border{
+        border:0 !important;
+    }
+
+    .gray_background{
+        background-color: #eee;
+
+    }
+    @media print{
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    }
+    .footer img{
+        width: 100%;
+        height: 120px;
+    }
+    @page {
+        size: A4;
+        margin: 20px 0 0;
+    }
+    .open_green{
+        background-color: #e6eed5;
+    }
+    .closed_green{
+        background-color: #cdddac;
+    }
+    .table-bordered>thead>tr>th, .table-bordered>tbody>tr>th,
+    .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td,
+    .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td {
+        border: 1px solid #abc572;
+    }
+    .under-line{
+        border-top: 1px solid #abc572;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    span.valu {
+        padding-right: 10px;
+        font-weight: 600;
+        font-family: sans-serif;
+    }
+
+    .under-line .col-xs-3 ,
+    .under-line .col-xs-4,
+    .under-line .col-xs-6 ,
+    .under-line .col-xs-8
+    {
+        border-left: 1px solid #abc572;
+    }
+
+</style>
+<?php
+if(isset($row)&&!empty($row)) {
+    $id=$row->id;
+    $emp_id_fk=$row->emp_id_fk;
+    $edara_id_fk=$row->edara_id_fk;
+    $qsm_id_fk=$row->qsm_id_fk;
+    $job_title_id_fk=$row->job_title_id_fk;
+    $mandate_type_fk=$row->mandate_type_fk;
+    $mandate_direction=$row->mandate_direction;
+    $mandate_distance=$row->mandate_distance;
+    $from_date=$row->from_date;
+    $to_date=$row->to_date;
+    $num_days=$row->num_days;
+    $bdal_count_method=$row->bdal_count_method;
+    $bdal_value=$row->bdal_value;
+    $bdal_total=$row->bdal_total;
+    $date=$row->date;
+    $mandate_purpose=$row->mandate_purpose;
+    $times=$row->times;
+    $emp_code=$row->emp_code;
+    $action=base_url().'/'.'human_resources/employee_forms/Mandate_orders/edit_Mandate_order/'.$this->uri->segment(5);
+
+
+
+
+}else{
+    $emp_id_fk='';
+    $qsm_id_fk='';
+    $edara_id_fk='';
+    $job_title_id_fk='';
+    $mandate_type_fk='';
+    $mandate_direction='';
+    $mandate_distance='';
+    $mandate_purpose='';
+    $from_date='';
+    $to_date='';
+    $num_days='';
+    $bdal_count_method='';
+    $bdal_value='';
+    $bdal_total='';
+    $id='';
+    $date='';
+    $times='';
+    $emp_code='';
+    $action=base_url().'/'.'human_resources/employee_forms/Mandate_orders';
+
+}
+
+?>
+    <div class="col-sm-12 no-padding " >
+        <div class="col-sm-9">
+            <div  class="panel panel-bd lobidisable lobipanel lobipanel-sortable ">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php echo $title;  ?></h3>
+                </div>
+
+
+<div class="clearfix"></div>	<br>
+<section class="main-body">
+    <form action="<?php echo $action;?>" method="post">
+
+    <div class="container-fluid">
+        <input type="hidden" id="emp_id" name="emp_id_fk" value="<?php if(!empty($emp_data->id)){ echo $emp_data->id; }else{ echo 0 ; }?> ">
+        <input type="hidden" id="administration" name="edara_id_fk" value="<?php if(!empty($emp_data->administration)){ echo $emp_data->administration; }else{ echo 0 ; }?>  ">
+
+        <input type="hidden" id="department" name="qsm_id_fk" value="<?php if(!empty($emp_data->department)){ echo $emp_data->department; }else{ echo 0 ; }?>  ">
+
+        <input type="hidden" id="manger" name="direct_manager_id_fk" value="<?php if(!empty($emp_data->manger)){ echo $emp_data->manger; }else{ echo 0 ; }?>  ">
+
+        <div class="print_forma  col-xs-12 no-padding">
+            <div class="piece-box">
+                <div class="piece-body">
+                    <div class="col-xs-12  under-line bordered-bottom ">
+                        <div class="col-xs-4">
+                            <h6>رقم الطلب:<span class=""></span></h6>
+                            <input type="text"   value="<?php if(isset($last)&&!empty($last)){echo $last->id+1;}else{ echo 1; } ?>" data-validation="required"  id="" name="order_id" class="form-control">
+                        </div>
+                        <div class="col-xs-4 form-group">
+                            <h6>نوع الانتداب</h6>
+                            <?php $types=array(1=>'انتداب عمل1',2=>'انتداب عمل 2');?>
+
+
+
+                            <select name="mandate_type_fk"  id="employee_name"
+                                    data-validation="required" class="form-control bottom-input selectpicker"
+                                    data-show-subtext="true" data-live-search="true"
+                                    aria-required="true" onchange="get_emp_data($(this).val());">
+                                <option value="">إختر نوع الانتداب</option>
+                                <?php
+                                if(isset($types)&&!empty($types)) {
+                                    foreach($types as $key=>$value){
+                                        $select='';
+                                        if(!empty($mandate_type_fk== $key)){
+                                            $select='selected';
+                                        }
+                                        ?>
+                                        <option value="<?php echo $key;?>" <?php echo $select;?> > <?php echo $value;?></option >
+                                        <?php
+                                    }
+                                }
+                                ?>
+                            </select>
+
+                        </div>
+                        <div class="col-xs-4">
+                            <h6>التاريخ:<span class=""></span></h6>
+                            <input type="date" value="<?php echo date("Y-m-d");?>" data-validation="required" id="" name="date" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="piece-box">
+                <div class="piece-body">
+                    <div class="col-xs-12 no-padding">
+                        <div class="col-xs-12  under-line bordered-bottom ">
+                            <h6>&nbsp بيانات الموظف</h6>
+                        </div>
+                        <div class="col-xs-12 no-padding under-line ">
+
+                                <div class="col-xs-4 form-group">
+                                    <h6>اسم الموظف</h6>
+
+
+
+                                    <select name=""  id="employee_name"
+                                        data-validation="required" class="form-control bottom-input selectpicker"
+                                        data-show-subtext="true" data-live-search="true"
+                                        aria-required="true" onchange="get_emp_data($(this).val());">
+                                    <option value="">إختر الموظف</option>
+                                    <?php
+                                    if(isset($all_emps)&&!empty($all_emps)) {
+                                        foreach($all_emps as $row){
+                                            $select='';
+                                            if(!empty($emp_id_fk == $row->id)){
+                                                $select='selected';
+                                            }
+                                            ?>
+                                            <option value="<?php echo $row->id;?>"  <?php echo $select;?> > <?php echo $row->employee;?></option >
+                                            <?php
+                                        }
+                                    }
+                                    ?>
+                                </select>
+
+                            </div>
+                            <div class="col-xs-4">
+                                <h6>الرقم الوظيفي:<span class=""></span></h6>
+                                <input type="text" disabled value="<?php echo $emp_code;?>" data-validation="required" id="emp_rakm" class="form-control">
+                            </div>
+
+                            <div class="col-xs-4 form-group">
+                                <h6>المسمي الوظيفي</h6>
+
+
+
+                                <select name="job_title_id_fk"   id="degree_id3" class="form-control bottom-input" data-validation="required"  aria-required="true" >
+                                    <option value="">إختر</option>
+                                    <?php foreach($job_role as $one_job_role){
+                                        $select='';
+                                        if(!empty($job_title_id_fk == $one_job_role->defined_id)){
+                                            $select='selected';
+                                        }
+                                        ?>
+                                        <option value="<?php echo $one_job_role->defined_id ;?>"<?php echo $select;?>><?php echo $one_job_role->defined_title ; ?></option>';
+                                    <?php } ?>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="col-xs-12 no-padding under-line open_green">
+                            <div class="col-xs-4 form-group">
+                                <h6>الاداره</h6>
+
+                                <select name="administration"disabled  id="manage"
+                                        class="form-control bottom-input"
+                                        onchange="return lood(this.value);"
+                                        aria-required="true">
+                                    <option value="">إختر</option>
+                                    <?php
+                                    if (!empty($admin)):
+                                        foreach ($admin as $record):
+                                            $select='';
+                                            if(!empty($edara_id_fk == $record->id)){
+                                                $select='selected';
+                                            }
+                                            ?>
+
+                                            <option
+                                                value="<? echo $record->id; ?>" <?php echo $select;?>><? echo $record->name; ?></option>
+                                            <?php
+                                        endforeach;
+                                    endif;
+                                    ?>
+                                </select>
+
+                            </div>
+
+                            <div class="col-xs-4 form-group">
+                                <h6>القسم</h6>
+
+                                <select name="" id="depart" disabled
+                                        class="form-control bottom-input"
+                                        onchange="return lood(this.value);">
+
+                                    <option value="">إختر</option>
+                                    <?php
+                                    if (!empty($departs)):
+                                        foreach ($departs as $record):
+                                            $select='';
+                                            if(!empty($qsm_id_fk == $record->id)){
+                                                $select='selected';
+                                            }
+                                            ?>
+                                            <option
+                                                value="<? echo $record->id; ?>" <?php echo $select;?>><? echo $record->name; ?></option>
+                                            <?php
+                                        endforeach;
+                                    endif;
+                                    ?>
+                                </select>
+
+                            </div>
+                            <div class="col-xs-4">
+                                <h6>عدد مرات انتداب الموظف:<span class="valu"></span></h6>
+                                <input type="text" disabled  id="num" value="<?php echo $times;?>"   data-validation="required" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="piece-box">
+                <div class="piece-body">
+                    <div class="col-xs-12 no-padding">
+                        <div class="col-xs-12  under-line bordered-bottom ">
+                            <h6>&nbsp بيانات الإنتداب</h6>
+                        </div>
+                        <div class="col-xs-12 no-padding under-line open_green ">
+                            <div class="col-xs-6 form-group">
+                                <div class="col-xs-8 form-group">
+                                <h6>جهه الانتداب</h6>
+
+                                <select name="mandate_direction" id="destination"
+
+                                        onchange="return lood(this.value);"
+                                        aria-required="true"  data-validation="required" class="form-control bottom-input selectpicker"
+                                        data-show-subtext="true" data-live-search="true">
+                                    <option value="">إختر</option>
+                                    <?php
+                                    if (!empty($dest)):
+                                        foreach ($dest as $record):
+                                            $select='';
+                                            if(!empty($mandate_direction == $record->id_setting)){
+                                                $select='selected';
+                                            }
+                                            ?>
+                                            <option
+                                                value="<? echo $record->id_setting; ?>"<?php echo $select;?> ><? echo $record->title_setting; ?></option>
+                                            <?php
+                                        endforeach;
+                                    endif;
+                                    ?>
+                                </select>
+                                    </div>
+                                <div class="col-xs-4 form-group">
+                                    <br>
+                                  <button type="button" class="btn btn-info btn-sm but2" title="إضافة جهه أخرى" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> </button>
+
+                                </div>
+
+                            </div>
+                            <div class="col-xs-6">
+                                <h6>المسافه:<span class="valu"></span></h6>
+                                <input type="text" value="<?php echo $mandate_distance;?> " data-validation="required" onkeypress="validate_number()" class="form-control" name="mandate_distance">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 no-padding under-line">
+                            <div class="col-xs-12">
+                                <h6>الغرض من الإنتداب</h6><br>
+                               <textarea class="form-control" data-validation="required" name="mandate_purpose"><?php echo $mandate_purpose;?></textarea>
+
+                            </div>
+                        </div>
+                        <div class="col-xs-12 no-padding under-line open_green ">
+                            <div class="col-xs-4">
+                                <h6>فترة الإنتداب من تاريخ <span class="valu"> </span></h6>
+                                <input type="date" value="<?php echo $from_date;?>" data-validation="required" id="from_date" onchange="get_peroid();" name="from_date" class="form-control">
+                            </div>
+                            <div class="col-xs-4">
+                                <h6>فترة الإنتداب الي تاريخ <span class="valu"> </span></h6>
+                                <input type="date" value="<?php echo $to_date;?>" data-validation="required" id="to_date" onchange="get_peroid();" name="to_date" class="form-control">
+                            </div>
+                            <div class="col-xs-4">
+                                <h6>مدة الإنتداب بالأيام <span class="valu"> </span></h6>
+                                <input  data-validation="required" type="text"value="<?php echo $num_days;?>" readonly="readonly" id="num_days" name="num_days" class="form-control">
+
+                            </div>
+
+                        </div>
+
+
+
+<?php
+$arr_badl=array(1=>'بدل1',2=>'بدل2');
+
+?>
+                        <div class="col-xs-12 no-padding under-line open_green ">
+
+                            <div class="col-xs-3">
+                                <h6>بدل الإنتداب<span class="valu"> </span></h6>
+                                <select name="bdal_count_method"  id="bdal_count_method"
+                                        data-validation="required" class="form-control bottom-input selectpicker"
+                                        data-show-subtext="true" data-live-search="true"
+                                        aria-required="true" onchange="get_badl_value($(this).val());">
+                                    <option value="">إختر نوع البدل</option>
+                                    <?php
+                                    if(isset($arr_badl)&&!empty($arr_badl)) {
+                                    foreach($arr_badl as $key=>$value){
+                                        if(!empty($bdal_count_method == $key.'-'.$key*100)){
+                                            $select='selected';
+                                        }
+                                    ?>
+                                    <option value="<?php echo $key;?>-<?php echo $key*100;?>"<?php echo $select;?> > <?php echo $value;?></option >
+                                    <?php
+                                    }
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="col-xs-3">
+                                <h6>قيمه البدل<span class="valu"> </span></h6>
+                                <input type="text" readonly value="<?php echo $bdal_value;?>" data-validation="required"  id="pay_count" name="bdal_value" class="form-control">
+                            </div>
+                            <div class="col-xs-3">
+                                <h6>إجمالي <span class="valu"> </span></h6>
+                                <input type="text" value="<?php echo $bdal_total;?>"  data-validation="required" readonly id="total" name="bdal_total" class="form-control">
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+        <input type="submit" name="add" value="حفظ">
+    </form>
+</section>
+                </div>
+            </div>
+
+        <div id="load3">
+
+            <?php $data_load["personal_data"]=$personal_data;
+            $this->load->view('admin/Human_resources/sidebar_person_data_vacation',$data_load);?>
+
+        </div>
+        </div>
+<!------------------------------------------------------------------------------------------------------------------------->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog "  role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">اضافه جهه انتداب</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                <div class="col-xs-7 col-xs-offset-2">
+                    <div class="form-group">
+                    <h6>اسم الجهه:<span class=""></span></h6>
+                    <input type="text" id="destin" name="dest" class="form-control" style="width: 80%;float: right">
+                        <button type="button" id="save" onclick="add_option($('#destin').val());" class="btn btn-danger"  style="float: left" data-dismiss="modal">حفظ</button>
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <br>
+                </div>
+
+                </div>
+            </div>
+            <div class="modal-footer" style="display: inline-block;width:100%;">
+                <button type="button" class="btn btn-default"  style="float: left" data-dismiss="modal">إغلاق</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!------------------------------------------------------------------------------------------------------------------------------>
+<?php
+
+if(isset($records)&&!empty($records)){
+
+
+
+
+?>
+
+            <?php
+
+            if(isset($records)&&!empty($records)){
+
+
+
+
+                ?>
+
+                <table id="example" class=" display table table-bordered   responsive nowrap" cellspacing="0" width="100%">
+                    <thead>
+                    <tr class="visible-md visible-lg">
+                        <th>مسلسل</th>
+                        <th> رقم الطلب</th>
+                        <th>اسم الموظف</th>
+                        <th>جهه الانتداب</th>
+                        <th> عدد ايام الانتداب</th>
+                        <th>التفاصيل</th>
+                        <th>الاجراء</th>
+                        <th>حاله الطلب</th>
+
+
+
+
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                    <?php
+                    $x=1;
+                    foreach($records as $row){?>
+                        <tr>
+                            <td><?php echo $x;?></td>
+                            <td><?php echo $row->id;?></td>
+                            <td><?php echo $row->name;?></td>
+
+                            <td><?php echo $row->destination;?></td>
+
+                            <td><?php echo $row->num_days;?></td>
+
+
+
+
+                            <td><button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal<?php echo$row->id; ?>">التفاصيل</button></td>
+
+
+
+                            <td>
+
+
+
+                                <a href="<?php echo base_url();?>human_resources/employee_forms/Mandate_orders/edit_Mandate_order/<?php echo $row->id;?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
+
+                                <a  href="<?php echo base_url();?>human_resources/employee_forms/Mandate_orders/delete_mandate_order/<?php echo $row->id;?>" onclick="return confirm('هل انت متاكد  من عمليه الحذف؟');"><i class="fa fa-trash" aria-hidden="true"></i> </a>
+
+
+                            </td>
+                            <td></td>
+
+
+                        </tr>
+                        <?php
+                        $x++;
+                    }
+                    ?>
+                    </tbody>
+                </table>
+                <?php
+            }
+            ?>
+
+<?php } ?>
+
+<!-------------------------------------------------------------------------------------------------------------->
+
+<?php
+
+  if(isset($records)&&!empty($records)){
+    foreach ($records as $row){
+
+
+        $id=$row->id;
+        $emp_id_fk=$row->emp_id_fk;
+        $edara_id_fk=$row->edara_id_fk;
+        $qsm_id_fk=$row->qsm_id_fk;
+        $job_title_id_fk=$row->job_title_id_fk;
+        $mandate_type_fk=$row->mandate_type_fk;
+        $mandate_direction=$row->mandate_direction;
+        $mandate_distance=$row->mandate_direction;
+        $from_date=$row->from_date;
+        $to_date=$row->to_date;
+        $num_days=$row->num_days;
+        $bdal_count_method=$row->bdal_count_method;
+        $bdal_value=$row->bdal_value;
+        $bdal_total=$row->bdal_total;
+        $date=$row->date;
+        $mandate_purpose=$row->mandate_purpose;
+        $times=$row->times;
+        $emp_code=$row->emp_code;
+
+        ?>
+        <div class="modal fade" id="myModal<?php echo $row->id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" style="width: 80%;"  role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">اضافه جهه انتداب</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-xs-12  under-line bordered-bottom ">
+                            <div class="col-xs-4">
+                                <h6>رقم الطلب:<span class=""></span></h6>
+                                <input type="text" readonly  value="<?php if(isset($last)){echo $last->id+1; }else{ echo $id;  } ?>" data-validation="required"  id="" name="order_id" class="form-control">
+                            </div>
+                            <div class="col-xs-4 form-group">
+                                <h6>نوع الانتداب</h6>
+                                <?php $types=array(1=>'انتداب عمل1',2=>'انتداب عمل 2');?>
+
+
+
+                                <select name="mandate_type_fk"  id="employee_name"
+                                        data-validation="required" disabled class="form-control bottom-input selectpicker"
+                                        data-show-subtext="true" data-live-search="true"
+                                        aria-required="true" onchange="get_emp_data($(this).val());">
+                                    <option value="">إختر نوع الانتداب</option>
+                                    <?php
+                                    if(isset($types)&&!empty($types)) {
+                                        foreach($types as $key=>$value){
+                                            $select='';
+                                            if(!empty($mandate_type_fk== $key)){
+                                                $select='selected';
+                                            }
+                                            ?>
+                                            <option value="<?php echo $key;?>" <?php echo $select;?> > <?php echo $value;?></option >
+                                            <?php
+                                        }
+                                    }
+                                    ?>
+                                </select>
+
+                            </div>
+                            <div class="col-xs-4">
+                                <h6>التاريخ:<span class=""></span></h6>
+                                <input type="date" disabled value="<?php echo $date;?>" data-validation="required" id="" name="date" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-xs-12  under-line bordered-bottom ">
+                            <h6>&nbsp بيانات الموظف</h6>
+                        </div>
+                        <div class="col-xs-12 no-padding under-line ">
+
+                            <div class="col-xs-4 form-group">
+                                <h6>اسم الموظف</h6>
+
+
+
+                                <select name=""  id="employee_name"
+                                        data-validation="required" disabled class="form-control bottom-input selectpicker"
+                                        data-show-subtext="true" data-live-search="true"
+                                        aria-required="true" onchange="get_emp_data($(this).val());">
+                                    <option value="">إختر الموظف</option>
+                                    <?php
+                                    if(isset($all_emps)&&!empty($all_emps)) {
+                                        foreach($all_emps as $row){
+                                            $select='';
+                                            if(!empty($emp_id_fk == $row->id)){
+                                                $select='selected';
+                                            }
+                                            ?>
+                                            <option value="<?php echo $row->id;?>"  <?php echo $select;?> > <?php echo $row->employee;?></option >
+                                            <?php
+                                        }
+                                    }
+                                    ?>
+                                </select>
+
+                            </div>
+                            <div class="col-xs-4">
+                                <h6>الرقم الوظيفي:<span class=""></span></h6>
+                                <input type="text" disabled value="<?php echo $emp_code;?>" data-validation="required" id="emp_rakm" class="form-control">
+                            </div>
+
+                            <div class="col-xs-4 form-group">
+                                <h6>المسمي الوظيفي</h6>
+
+
+
+                                <select name="job_title_id_fk"  disabled id="degree_id3" class="form-control bottom-input" data-validation="required"  aria-required="true" >
+                                    <option value="">إختر</option>
+                                    <?php foreach($job_role as $one_job_role){
+                                        $select='';
+                                        if(!empty($job_title_id_fk == $one_job_role->defined_id)){
+                                            $select='selected';
+                                        }
+                                        ?>
+                                        <option value="<?php echo $one_job_role->defined_id ;?>"<?php echo $select;?>><?php echo $one_job_role->defined_title ; ?></option>';
+                                    <?php } ?>
+                                </select>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-xs-12 no-padding under-line open_green">
+                            <div class="col-xs-4 form-group">
+                                <h6>الاداره</h6>
+
+                                <select name="administration" disabled id="manage"
+                                        class="form-control bottom-input"
+                                        onchange="return lood(this.value);"
+                                        data-validation="required" aria-required="true">
+                                    <option value="">إختر</option>
+                                    <?php
+                                    if (!empty($admin)):
+                                        foreach ($admin as $record):
+                                            $select='';
+                                            if(!empty($edara_id_fk == $record->id)){
+                                                $select='selected';
+                                            }
+                                            ?>
+
+                                            <option
+                                                value="<? echo $record->id; ?>" <?php echo $select;?>><? echo $record->name; ?></option>
+                                            <?php
+                                        endforeach;
+                                    endif;
+                                    ?>
+                                </select>
+
+                            </div>
+
+                            <div class="col-xs-4 form-group">
+                                <h6>القسم</h6>
+
+                                <select name="" id="depart" disabled
+                                        class="form-control bottom-input"
+                                        onchange="return lood(this.value);">
+
+                                    <option value="">إختر</option>
+                                    <?php
+                                    if (!empty($departs)):
+                                        foreach ($departs as $record):
+                                            $select='';
+                                            if(!empty($qsm_id_fk == $record->id)){
+                                                $select='selected';
+                                            }
+                                            ?>
+                                            <option
+                                                value="<? echo $record->id; ?>" <?php echo $select;?>><? echo $record->name; ?></option>
+                                            <?php
+                                        endforeach;
+                                    endif;
+                                    ?>
+                                </select>
+
+                            </div>
+                            <div class="col-xs-4">
+                                <h6>عدد مرات انتداب الموظف:<span class="valu"></span></h6>
+                                <input type="text" disabled id="num" value="<?php echo $times;?>"   data-validation="required" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-xs-12  under-line bordered-bottom ">
+                            <h6>&nbsp بيانات الإنتداب</h6>
+                        </div>
+                        <div class="col-xs-12 no-padding under-line open_green ">
+                            <div class="col-xs-6 form-group">
+                                <div class="col-xs-12 form-group">
+                                    <h6>جهه الانتداب</h6>
+
+                                    <select name="mandate_direction" disabled id="destination"
+
+                                            disabled  onchange="return lood(this.value);"
+                                            aria-required="true"  data-validation="required" class="form-control bottom-input selectpicker"
+                                            data-show-subtext="true" data-live-search="true">
+                                        <option value="">إختر</option>
+                                        <?php
+                                        if (!empty($dest)):
+                                            foreach ($dest as $record):
+                                                $select='';
+                                                if(!empty($mandate_direction == $record->id_setting)){
+                                                    $select='selected';
+                                                }
+                                                ?>
+                                                <option
+                                                    value="<? echo $record->id_setting; ?>"<?php echo $select;?> ><? echo $record->title_setting; ?></option>
+                                                <?php
+                                            endforeach;
+                                        endif;
+                                        ?>
+                                    </select>
+                                </div>
+
+
+                            </div>
+                            <div class="col-xs-6">
+                                <h6>المسافه:<span class="valu"></span></h6>
+                                <input type="text" disabled value="<?php echo $mandate_distance;?> " data-validation="required" class="form-control" name="mandate_distance">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 no-padding under-line">
+                            <div class="col-xs-12">
+                                <h6>الغرض من الإنتداب</h6><br>
+                                <textarea disabled class="form-control" data-validation="required" name="mandate_purpose"><?php echo $mandate_purpose;?></textarea>
+
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 no-padding under-line open_green ">
+                            <div class="col-xs-4">
+                                <h6>فترة الإنتداب من تاريخ <span class="valu"> </span></h6>
+                                <input type="date"disabled value="<?php echo $from_date;?>" data-validation="required" id="from_date" onchange="get_peroid();" name="from_date" class="form-control">
+                            </div>
+                            <div class="col-xs-4">
+                                <h6>فترة الإنتداب الي تاريخ <span class="valu"> </span></h6>
+                                <input type="date" disabled value="<?php echo $to_date;?>" data-validation="required" id="to_date" onchange="get_peroid();" name="to_date" class="form-control">
+                            </div>
+                            <div class="col-xs-4">
+                                <h6>مدة الإنتداب بالأيام <span class="valu"> </span></h6>
+                                <input  data-validation="required" type="text"value="<?php echo $num_days;?>" readonly="readonly" id="num_days" name="num_days" class="form-control">
+
+                            </div>
+
+                        </div>
+
+
+
+                        <?php
+                        $arr_badl=array(1=>'بدل1',2=>'بدل2');
+
+                        ?>
+                        <div class="col-xs-12 no-padding under-line open_green ">
+
+                            <div class="col-xs-3">
+                                <h6>بدل الإنتداب<span class="valu"> </span></h6>
+                                <select name="bdal_count_method" disabled  id=""
+                                        data-validation="required" class="form-control bottom-input selectpicker"
+                                        data-show-subtext="true" data-live-search="true"
+                                        aria-required="true" onchange="get_badl_value($(this).val());">
+                                    <option value="">إختر نوع البدل</option>
+                                    <?php
+                                    if(isset($arr_badl)&&!empty($arr_badl)) {
+                                        foreach($arr_badl as $key=>$value){
+                                            if(!empty($bdal_count_method == $key.'-'.$key*100)){
+                                                $select='selected';
+                                            }
+                                            ?>
+                                            <option value="<?php echo $key;?>-<?php echo $key*100;?>"<?php echo $select;?> > <?php echo $value;?></option >
+                                            <?php
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="col-xs-3">
+                                <h6>قيمه البدل<span class="valu"> </span></h6>
+                                <input  disabled type="text" readonly value="<?php echo $bdal_value;?>" data-validation="required"  id="pay_count" name="bdal_value" class="form-control">
+                            </div>
+                            <div class="col-xs-3">
+                                <h6>إجمالي <span class="valu"> </span></h6>
+                                <input disabled type="text" value="<?php echo $bdal_total;?>"  data-validation="required" readonly id="total" name="bdal_total" class="form-control">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="modal-footer" style="display: inline-block;width:100%;">
+                        <button type="button" class="btn btn-default"  style="float: left" data-dismiss="modal">إغلاق</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<?php } } ?>
+
+<!-------------------------------------------------------------------------------------------------------------->
+
+
+
+    <script>
+        function get_emp_data(valu)
+        {
+
+            $.ajax({
+                type:'post',
+                url:"<?php echo base_url();?>human_resources/employee_forms/Vacation/get_emp_data",
+                data:{valu:valu},
+                success:function(d) {
+
+
+                    var obj=JSON.parse(d);
+
+
+
+                    $('#job_title_id_fk').val(obj.degree_id);
+                    $('#administration3').val(obj.administration);
+                    $('#department3').val(obj.department);
+                    $('#emp_id').val(obj.id);
+                    $('#administration').val(obj.administration);
+                    $('#department').val(obj.department);
+                    $('#manger').val(obj.manger);
+                    $('#num').val(obj.order);
+                 //   alert(d);
+
+                    $('#degree_id3').val(obj.degree_id);
+                    $('#manage').val(obj.administration);
+                    $('#depart').val(obj.department);
+                    $('#emp_rakm').val(obj.emp_code);
+
+
+
+
+                }
+
+
+
+
+
+
+            });
+
+
+            $.ajax({
+                type:'post',
+                url:"<?php echo base_url();?>human_resources/employee_forms/Vacation/get_load_page",
+                data:{valu:valu},
+                success:function(d) {
+
+                    $('#load3').html(d);
+
+
+                }
+
+
+
+
+
+
+            });
+        }
+
+
+    </script>
+<script>
+function add_option(valu)
+{
+    var id='<?php echo $last_id +1;?>';
+    var x=$('#destination').val();
+    $('#destination').append('<option value='+id+' selected>'+valu+'</option>');
+    $('.selectpicker').selectpicker('refresh');
+    $.ajax({
+        type:'post',
+        url:"<?php echo base_url();?>human_resources/employee_forms/Mandate_orders/add_option",
+        data:{valu:valu},
+        success:function(d) {
+
+    $('.but2').attr('disabled','true');
+
+
+        }
+
+
+
+
+
+
+    });
+}
+
+
+</script>
+
+<script>
+    function get_peroid()
+    {
+        var end_date=$('#to_date').val();
+        var start_date=$('#from_date').val();
+
+
+        var a = new Date(end_date);
+        var x=new Date(start_date);
+
+
+        if($('#from_date').val()=='')
+        {
+            return;
+        }
+        if($('#to_date').val()=='')
+        {
+            return;
+        }
+
+            if (start_date > end_date) {
+                alert("يجب ان يكون تاريخ النهايه اكبر من البدايه");
+                return;
+            }
+
+
+        // var weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+
+
+
+
+
+
+        $.ajax({
+            type:'post',
+            url:"<?php echo base_url();?>human_resources/employee_forms/Vacation/get_date",
+            data:{start_date:start_date,end_date:end_date},
+            success:function(d) {
+
+                var obj=JSON.parse(d);
+
+
+                $('#num_days').val(obj.day);
+                $('#bdal_count_method').val()
+                get_badl_value($('#bdal_count_method').val());
+                 
+            }
+
+
+
+
+
+
+        });
+    }
+</script>
+
+<script>
+  function get_badl_value(valu)
+  {
+      if($('#num_days').val()=='')
+      {
+          alert("من فضلك ادخل مده الانتداب");
+          return;
+      }
+      var res=valu.split("-");
+      var num_day=$('#num_days').val();
+
+      $('#pay_count').val(res[1]);
+      $('#total').val(res[1]*num_day);
+
+  }
+
+</script>
+
